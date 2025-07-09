@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {showArrivalsByPostCode} from './busQueries'
+import {showArrivalsByPostCode, BusDetails} from './busQueries'
 import {ArrivalTable} from './ArrivalTable'
 
 async function getBuses(postcode: string): Promise<string> {
   // very basic testing string, you'll likely return a list of strings or JSON objects instead!
   const busDetails = await showArrivalsByPostCode(postcode);
-  return "Bus details: " + busDetails;
+  let testDetails = Array.from(busDetails.values())[0][0];
+  return "Bus details: " + testDetails.destinationName;
 }
 
 function App(): React.ReactElement {
@@ -29,7 +30,7 @@ function App(): React.ReactElement {
       <input type="text" id="postcodeInput" onChange={updatePostcode}/>
       <input type="submit" value="Submit"/>
     </form>
-    < ArrivalTable />
+    < ArrivalTable busDetails={tableData}/>
     {JSON.stringify(tableData, null, 4) /* this will just render the string - try creating a table 'dynamically'! */}
   </>;
 }

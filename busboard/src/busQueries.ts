@@ -1,7 +1,7 @@
 
 // @ts-ignore
 
-type BusDetails =  {
+export type BusDetails =  {
     timeToStation: number,
     lineName: string,
     destinationName: string
