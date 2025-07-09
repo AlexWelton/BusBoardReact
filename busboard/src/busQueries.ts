@@ -30,9 +30,6 @@ async function queryArrivals( stopCode: string): Promise<BusDetails[] | undefine
     }
 }
 
-function getTimeToArrival(bus: BusDetails) {
-    return Math.floor(bus.timeToStation / 60);
-}
 
 
 function getNextNBusDetails(response: BusDetails[], n: number): BusDetails[] {
@@ -120,10 +117,10 @@ export async function showArrivalsByPostCode(postCode: string) {
     }
     return stopArrivals;
 }
-
-async function testP(){
-    console.log(await showArrivalsByPostCode("NW51TL"))
-}
-testP()
+//
+// async function testP(){
+//     console.log(await showArrivalsByPostCode("NW51TL"))
+// }
+// testP()
 
 //module.exports = {showArrivalsByPostCode};

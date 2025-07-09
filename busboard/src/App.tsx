@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import {showArrivalsByPostCode, BusDetails} from './busQueries'
 import {ArrivalTable} from './ArrivalTable'
 
-async function getBuses(postcode: string): Promise<string> {
+async function getBuses(postcode: string): Promise<BusDetails[]> {
   // very basic testing string, you'll likely return a list of strings or JSON objects instead!
   const busDetails = await showArrivalsByPostCode(postcode);
-  let testDetails = Array.from(busDetails.values())[0][0];
-  return "Bus details: " + testDetails.destinationName;
+
+  return Array.from(busDetails.values())[0];
 }
 
 function App(): React.ReactElement {
   const [postcode, setPostcode] = useState<string>("");
-  const [tableData, setTableData] = useState<string>("");
+  const [tableData, setTableData] = useState<BusDetails[]>([]);
 
   async function formHandler(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault(); // to stop the form refreshing the page when it submits
@@ -31,7 +31,6 @@ function App(): React.ReactElement {
       <input type="submit" value="Submit"/>
     </form>
     < ArrivalTable busDetails={tableData}/>
-    {JSON.stringify(tableData, null, 4) /* this will just render the string - try creating a table 'dynamically'! */}
   </>;
 }
 
