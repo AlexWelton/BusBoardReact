@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {showArrivalsByPostCode} from './busQueries'
+import {ArrivalTable} from './ArrivalTable'
 
 async function getBuses(postcode: string): Promise<string> {
   // very basic testing string, you'll likely return a list of strings or JSON objects instead!
@@ -28,6 +29,7 @@ function App(): React.ReactElement {
       <input type="text" id="postcodeInput" onChange={updatePostcode}/>
       <input type="submit" value="Submit"/>
     </form>
+    < ArrivalTable />
     {JSON.stringify(tableData, null, 4) /* this will just render the string - try creating a table 'dynamically'! */}
   </>;
 }
