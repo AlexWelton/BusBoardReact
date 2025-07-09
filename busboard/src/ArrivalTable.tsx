@@ -1,4 +1,5 @@
 import {BusDetails} from "./busQueries";
+import Table from 'react-bootstrap/Table';
 
 function getTimeToArrival(bus: BusDetails) {
     return Math.floor(bus.timeToStation / 60);
@@ -13,7 +14,7 @@ const ArrivalTable = ({busDetails}:{busDetails:BusDetails[]|undefined}): React.R
         return <>Sorry nothing running!</>
     }
 
-    return <table>
+    return <Table striped className="mt-5 mx-5">
         <tbody>
             <tr>
                 <td>
@@ -34,7 +35,7 @@ const ArrivalTable = ({busDetails}:{busDetails:BusDetails[]|undefined}): React.R
         </tbody>
 
 
-    </table>
+    </Table>
 }
 
 export {ArrivalTable};

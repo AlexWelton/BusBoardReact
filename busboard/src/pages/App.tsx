@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
-import {showArrivalsByPostCode, BusDetails} from './busQueries'
-import {ArrivalTable} from './ArrivalTable'
+import {showArrivalsByPostCode, BusDetails} from '../busQueries'
+import {ArrivalTable} from '../ArrivalTable'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 async function getBuses(postcode: string): Promise<BusDetails[]> {
   // very basic testing string, you'll likely return a list of strings or JSON objects instead!
@@ -23,15 +26,25 @@ function App(): React.ReactElement {
     setPostcode(data.target.value)
   }
 
-  return <>
-    <h1> BusBoard </h1>
+  return <div className="d-flex flex-column align-items-center">
+  {/*<h1> BusBoard </h1>
     <form action="" onSubmit={formHandler}>
       <label htmlFor="postcodeInput"> Postcode: </label>
       <input type="text" id="postcodeInput" onChange={updatePostcode}/>
       <input type="submit" value="Submit"/>
     </form>
     < ArrivalTable busDetails={tableData}/>
-  </>;
+  </>;*/}
+    <h1 className="d-flex"> BusBoard </h1>
+    <Form action="" onSubmit={formHandler}>
+      <Form.Group className="mb-3" controlId="postcode">
+        <Form.Label>Postcode</Form.Label>
+        <Form.Control type="text" onChange={updatePostcode} />
+      </Form.Group>
+      <Button variant="primary" type="submit" value="Submit">Submit</Button>
+    </Form>
+    < ArrivalTable busDetails={tableData} />
+  </div>
 }
 
 export default App;
