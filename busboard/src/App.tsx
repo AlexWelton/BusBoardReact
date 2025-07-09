@@ -11,7 +11,7 @@ async function getBuses(postcode: string): Promise<BusDetails[]> {
 
 function App(): React.ReactElement {
   const [postcode, setPostcode] = useState<string>("");
-  const [tableData, setTableData] = useState<BusDetails[]>([]);
+  const [tableData, setTableData] = useState<BusDetails[] | undefined>(undefined);
 
   async function formHandler(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault(); // to stop the form refreshing the page when it submits
